@@ -21,3 +21,19 @@ Medical equipment symbols are currently planned as low-value symbols.
 The game should include at least three different equipment designs to create more visual variety.
 
 The exact equipment symbols have not been confirmed yet.
+
+Human symbols:
+- Office Worker
+- Tourist
+- Scientist
+
+Protected symbol:
+- Masked Person
+
+Tool symbols:
+- Thermometer
+- Sanitizer
+- Medicine
+
+Special symbol:
+- Virus Wild
