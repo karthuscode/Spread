@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "demo:grid": "node src/demo/gridDemo.ts",
     "test": "node --test tests/*.test.ts",
     "typecheck": "tsc --project tsconfig.json"
   },
