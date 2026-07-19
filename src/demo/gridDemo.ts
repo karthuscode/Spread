@@ -1,4 +1,6 @@
 import { PROVISIONAL_SYMBOL_WEIGHTS } from "../config/provisionalSymbolWeights.ts";
+import type { GridSnapshot } from "../grid/Grid.ts";
+import { InfectionEngine } from "../infection/InfectionEngine.ts";
 import { ReelGenerator } from "../reel-generator/ReelGenerator.ts";
 import { WeightedSymbolSelector } from "../reel-generator/WeightedSymbolSelector.ts";
 import { SymbolId, type SymbolId as SymbolIdValue } from "../symbols/SymbolId.ts";
@@ -15,12 +17,24 @@ const DISPLAY_LABELS: Readonly<Record<SymbolIdValue, string>> = {
   [SymbolId.InfectedWild]: "IW",
 };
 
+const formatGrid = (snapshot: GridSnapshot): string =>
+  snapshot
+    .map(
+      (row) =>
+        `| ${row.map((symbol) => DISPLAY_LABELS[symbol]).join(" | ")} |`,
+    )
+    .join("\n");
+
 const selector = new WeightedSymbolSelector(
   PROVISIONAL_SYMBOL_WEIGHTS,
   Math.random,
 );
 const grid = new ReelGenerator(selector).generate();
+const beforeInfection = grid.snapshot();
 
-for (const row of grid.snapshot()) {
-  console.log(`| ${row.map((symbol) => DISPLAY_LABELS[symbol]).join(" | ")} |`);
-}
+new InfectionEngine().infect(grid);
+
+console.log("BEFORE INFECTION");
+console.log(formatGrid(beforeInfection));
+console.log("\nAFTER INFECTION");
+console.log(formatGrid(grid.snapshot()));
