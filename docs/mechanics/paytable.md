@@ -67,3 +67,4 @@ The initial simulation should measure:
 The target RTP for the first prototype is approximately 94%–97%.
 
 This target is experimental and does not represent a certified commercial game.
+
