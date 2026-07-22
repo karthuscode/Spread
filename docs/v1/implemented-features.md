@@ -94,10 +94,12 @@ The service contains no game-rule calculations and does not instantiate hidden d
 
 ## Terminal demo
 
-`npm run demo:grid` generates one Grid with `Math.random` and the provisional weights, captures the pre-infection state, applies infection, and prints readable before/after rows. Short labels and formatting remain in the demo layer.
+`npm run demo` constructs the existing engine with `Math.random`, provisional symbol weights, and the default provisional Paytable, then executes exactly one complete spin. It prints a title, initial Grid, infection summary, final Grid, winning paylines, and total multiplier.
+
+Grid labels, infection comparison, no-win messaging, and all terminal formatting remain in the demo layer. The engine contains no output or presentation logic. The earlier `npm run demo:grid` command remains available for the narrower generation-and-infection view.
 
 ## Automated validation
 
-Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, Paytable lookup and validation, WinCalculator transformations, SpinResult construction, and complete spin orchestration. SpinEngine coverage verifies snapshot timing, final-state-only evaluation, exact dependency handoffs, semantic call order, repeated spins, no-infection and infection-changing outcomes, deterministic behavior, dependency validation, and error propagation. Type checking is available through `npm run typecheck`.
+Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, Paytable lookup and validation, WinCalculator transformations, SpinResult construction, complete spin orchestration, and terminal formatting. Demo tests verify every required output section plus infection, no-infection, win, and no-win summaries without depending on randomness. Type checking is available through `npm run typecheck`.
 
 For rules rather than implementation detail, see [Current game rules](current-game-rules.md). For missing systems, see the [Roadmap](roadmap.md).

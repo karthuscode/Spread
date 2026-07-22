@@ -4,13 +4,11 @@ The roadmap prioritizes a complete, measurable base-game loop before presentatio
 
 ## Immediate next milestone
 
-**Planned next:** extend the terminal demo to display complete `SpinResult` output from the implemented base-game engine.
+**Planned next:** implement large-sample simulation and begin measuring the provisional game math.
 
 ## Short-term engine milestones
 
-Paytable lookup, `WinCalculator`, `SpinResult`, and `SpinEngine` orchestration are complete. The remaining intended order is:
-
-1. Extend the terminal demo to show complete spin results.
+Paytable lookup, `WinCalculator`, `SpinResult`, `SpinEngine` orchestration, and complete terminal reporting are implemented.
 
 The implemented full data flow is documented in [Architecture](architecture.md#implemented-full-spin-flow).
 
@@ -18,14 +16,14 @@ The implemented full data flow is documented in [Architecture](architecture.md#i
 
 After the full spin path is deterministic and tested:
 
-2. Implement large-sample simulation.
-3. Measure RTP.
-4. Measure hit frequency.
-5. Measure average and median win.
-6. Measure payout distribution.
-7. Measure volatility.
-8. Measure maximum observed win.
-9. Tune symbol weights and paytable values.
+1. Implement large-sample simulation.
+2. Measure RTP.
+3. Measure hit frequency.
+4. Measure average and median win.
+5. Measure payout distribution.
+6. Measure volatility.
+7. Measure maximum observed win.
+8. Tune symbol weights and paytable values.
 
 Simulation results, rather than intuition alone, must drive final math. See [Balancing notes](balancing-notes.md).
 

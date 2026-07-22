@@ -18,7 +18,7 @@ Spread is a strict TypeScript domain project using ES modules. Source code is or
 | `WinCalculator` | Converts ordered `PaylineEvaluationResult` objects into immutable line-win multiplier results using Paytable lookup. |
 | `SpinResult` | Stores immutable pre-infection and post-infection Grid snapshots with the `WinResult` calculated from the final state. |
 | `SpinEngine` | Orchestrates one complete base-game spin through generation, snapshots, infection, final-state evaluation, win calculation, and result construction. |
-| Terminal demo | Composes generation and infection and formats before/after snapshots outside the engine. |
+| Terminal demo | Instantiates `SpinEngine`, executes one spin, and formats the returned snapshots, infection summary, paylines, and multiplier outside the engine. |
 
 Empty placeholders currently exist for broader game, balance, and statistics responsibilities. Their presence is not an implementation of those systems.
 
