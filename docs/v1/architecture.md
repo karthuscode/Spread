@@ -17,6 +17,7 @@ Spread is a strict TypeScript domain project using ES modules. Source code is or
 | `Paytable` | Validates and owns an immutable copy of provisional payout multipliers, then looks them up by paying symbol and a match count of 3, 4, or 5. |
 | `WinCalculator` | Converts ordered `PaylineEvaluationResult` objects into immutable line-win multiplier results using Paytable lookup. |
 | `SpinResult` | Stores immutable pre-infection and post-infection Grid snapshots with the `WinResult` calculated from the final state. |
+| `SpinEngine` | Orchestrates one complete base-game spin through generation, snapshots, infection, final-state evaluation, win calculation, and result construction. |
 | Terminal demo | Composes generation and infection and formats before/after snapshots outside the engine. |
 
 Empty placeholders currently exist for broader game, balance, and statistics responsibilities. Their presence is not an implementation of those systems.
@@ -36,7 +37,7 @@ Generated symbol weights
 → SpinResult
 ```
 
-The selector owns probability mapping, the generator owns board construction, the Grid owns symbol state, infection performs the permitted transformation, and payline evaluation describes matches. Each boundary has a narrow responsibility.
+`SpinEngine` owns this sequence but none of its game rules. The selector owns probability mapping, the generator owns board construction, the Grid owns symbol state and snapshot creation, infection performs the permitted transformation, payline evaluation describes matches, and win calculation converts them to multipliers. Each boundary has a narrow responsibility.
 
 `Paytable` is not a sequential Grid-processing step. It is an independent, passive data dependency queried by `WinCalculator`.
 
@@ -50,7 +51,9 @@ The selector owns probability mapping, the generator owns board construction, th
 
 `SpinResult` preserves the immutable `GridSnapshot` values and `WinResult` supplied to it and freezes its own instance. It performs no generation, infection, evaluation, payout lookup, or orchestration.
 
-## Planned full spin flow
+`SpinEngine` retains no per-spin state. It receives its generator, infection engine, evaluator, and win calculator through constructor injection and lets dependency failures propagate.
+
+## Implemented full spin flow
 
 ```text
 SpinEngine
@@ -66,7 +69,7 @@ SpinEngine
   → SpinResult(initialGrid, finalGrid, winResult)
 ```
 
-`SpinEngine` is planned next and will own this orchestration. It will call `Grid.snapshot()` before and after infection, evaluate wins from the final Grid state, and assemble the already-implemented `SpinResult`. `SpinResult` itself remains a passive domain object.
+`SpinEngine` calls `Grid.snapshot()` immediately after generation and again after infection. It evaluates paylines only from the post-infection Grid returned by `InfectionEngine`, passes those exact results to `WinCalculator`, and assembles `SpinResult`. It performs no symbol selection, infection, matching, payout, betting, simulation, or presentation calculations of its own.
 
 ## Evaluation and payout separation
 

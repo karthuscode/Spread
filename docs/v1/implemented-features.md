@@ -84,7 +84,13 @@ The calculator does not handle bets, currency, balances, RTP, Grid state, infect
 
 `SpinResult` is an immutable domain object representing one completed spin. It stores an immutable pre-infection `GridSnapshot`, an immutable post-infection `GridSnapshot`, and the `WinResult` calculated from the final Grid state. Snapshot contents may be identical.
 
-The object preserves supplied snapshot and win-result values and freezes itself. It performs no reel generation, infection, payline evaluation, payout lookup, or orchestration. The future `SpinEngine` will create snapshots by calling `Grid.snapshot()` before and after infection and then assemble the result.
+The object preserves supplied snapshot and win-result values and freezes itself. It performs no reel generation, infection, payline evaluation, payout lookup, or orchestration.
+
+## Spin orchestration
+
+`SpinEngine` orchestrates one complete base-game spin using constructor-injected `ReelGenerator`, `InfectionEngine`, `PaylineEvaluator`, and `WinCalculator` dependencies. It generates a Grid, captures the immutable initial snapshot, applies infection, captures the immutable final snapshot, evaluates only the final post-infection Grid, calculates normal line-win multipliers, and returns `SpinResult`.
+
+The service contains no game-rule calculations and does not instantiate hidden default dependencies. It does not call random sources directly, retain per-spin state, log, or handle betting, simulation, presentation, bonuses, or special outcomes. Dependency errors propagate to the caller.
 
 ## Terminal demo
 
@@ -92,6 +98,6 @@ The object preserves supplied snapshot and win-result values and freezes itself.
 
 ## Automated validation
 
-Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, Paytable lookup and validation, WinCalculator transformations, and SpinResult construction and immutability. SpinResult coverage includes equal and different snapshot contents, detachment from later source-Grid mutation, input preservation, validation, and deterministic construction. Type checking is available through `npm run typecheck`.
+Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, Paytable lookup and validation, WinCalculator transformations, SpinResult construction, and complete spin orchestration. SpinEngine coverage verifies snapshot timing, final-state-only evaluation, exact dependency handoffs, semantic call order, repeated spins, no-infection and infection-changing outcomes, deterministic behavior, dependency validation, and error propagation. Type checking is available through `npm run typecheck`.
 
 For rules rather than implementation detail, see [Current game rules](current-game-rules.md). For missing systems, see the [Roadmap](roadmap.md).

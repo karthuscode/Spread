@@ -68,7 +68,15 @@ All five fixed paylines are intended to be active:
 - Its `WinResult` is calculated from the final, post-infection Grid state.
 - Snapshot creation is not a `SpinResult` responsibility.
 - `SpinResult` performs no generation, infection, evaluation, payout lookup, or orchestration.
-- The future `SpinEngine` will create snapshots before and after infection and assemble `SpinResult`.
+
+## Spin orchestration
+
+- `SpinEngine` generates one Grid through `ReelGenerator` for each spin.
+- It creates the immutable initial snapshot immediately after generation and before infection.
+- It applies `InfectionEngine` and creates the immutable final snapshot afterward.
+- Payline evaluation uses only the final post-infection Grid.
+- The resulting evaluations are passed to `WinCalculator`, and `SpinEngine` returns `SpinResult` containing both snapshots and that exact `WinResult`.
+- `SpinEngine` contains no game-rule, payout, betting, simulation, or presentation calculations.
 
 ## Provisional math
 
