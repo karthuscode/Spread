@@ -6,9 +6,9 @@ The project favors mechanical coherence and polish over accumulating unrelated f
 
 ## Current status
 
-**Implemented:** symbol metadata, provisional weighted symbol selection, 5×3 Grid generation, one-step orthogonal infection, five fixed paylines, left-to-right payline match evaluation, type-safe Paytable lookup, normal line-win multiplier calculation, a before/after terminal demo, and deterministic automated tests.
+**Implemented:** symbol metadata, provisional weighted symbol selection, 5×3 Grid generation and immutable snapshots, one-step orthogonal infection, five fixed paylines, left-to-right payline match evaluation, type-safe Paytable lookup, normal line-win multiplier calculation, immutable `SpinResult` representation, a before/after terminal demo, and deterministic automated tests.
 
-**Planned next:** define `SpinResult`, orchestrate a complete spin, and build simulation tools.
+**Planned next:** implement `SpinEngine` to orchestrate a complete spin, then build simulation tools.
 
 **Not implemented:** currency or bet-based payout calculation, betting and balance behavior, RTP or volatility simulation, complete spin orchestration, graphical presentation, bonus games, and special all-Wild outcomes.
 

@@ -62,6 +62,14 @@ All five fixed paylines are intended to be active:
 - Newly created `InfectedWild` symbols do not cause chain reactions in the base game.
 - Overlapping targets from multiple `VirusWild` symbols are transformed once.
 
+## Spin result
+
+- `SpinResult` stores immutable pre-infection and post-infection `GridSnapshot` values.
+- Its `WinResult` is calculated from the final, post-infection Grid state.
+- Snapshot creation is not a `SpinResult` responsibility.
+- `SpinResult` performs no generation, infection, evaluation, payout lookup, or orchestration.
+- The future `SpinEngine` will create snapshots before and after infection and assemble `SpinResult`.
+
 ## Provisional math
 
 The generated-symbol weights listed in [Implemented features](implemented-features.md#weighted-symbol-selection) and the current Paytable multipliers are implemented but provisional. Neither weights nor payouts should be treated as balanced until simulation and tuning are complete.

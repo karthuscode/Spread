@@ -78,7 +78,13 @@ The default configuration contains the current provisional multipliers. These va
 
 Each immutable `LineWin` contains the one-based `paylineId`, paying `symbolId`, supported `matchCount`, and configured `multiplier`. `WinResult` contains the ordered `lineWins` collection and `totalMultiplier`, which is only the sum of normal line-win multipliers.
 
-The calculator does not handle bets, currency, balances, RTP, Grid state, infection, bonuses, or special outcomes. `SpinResult` is the next planned engine component, followed by full spin orchestration.
+The calculator does not handle bets, currency, balances, RTP, Grid state, infection, bonuses, or special outcomes.
+
+## Spin result
+
+`SpinResult` is an immutable domain object representing one completed spin. It stores an immutable pre-infection `GridSnapshot`, an immutable post-infection `GridSnapshot`, and the `WinResult` calculated from the final Grid state. Snapshot contents may be identical.
+
+The object preserves supplied snapshot and win-result values and freezes itself. It performs no reel generation, infection, payline evaluation, payout lookup, or orchestration. The future `SpinEngine` will create snapshots by calling `Grid.snapshot()` before and after infection and then assemble the result.
 
 ## Terminal demo
 
@@ -86,6 +92,6 @@ The calculator does not handle bets, currency, balances, RTP, Grid state, infect
 
 ## Automated validation
 
-Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, Paytable lookup and validation, and WinCalculator transformations. WinCalculator coverage includes empty, single, and multiple-line results; ordering; summation; repeated symbols; all supported match counts; Paytable calls; determinism; validation; input preservation; and immutable output. Type checking is available through `npm run typecheck`.
+Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, Paytable lookup and validation, WinCalculator transformations, and SpinResult construction and immutability. SpinResult coverage includes equal and different snapshot contents, detachment from later source-Grid mutation, input preservation, validation, and deterministic construction. Type checking is available through `npm run typecheck`.
 
 For rules rather than implementation detail, see [Current game rules](current-game-rules.md). For missing systems, see the [Roadmap](roadmap.md).

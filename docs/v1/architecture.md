@@ -16,6 +16,7 @@ Spread is a strict TypeScript domain project using ES modules. Source code is or
 | `PaylineEvaluator` | Reads the Grid without mutation and returns ordered matches of at least three consecutive symbols from the first reel. |
 | `Paytable` | Validates and owns an immutable copy of provisional payout multipliers, then looks them up by paying symbol and a match count of 3, 4, or 5. |
 | `WinCalculator` | Converts ordered `PaylineEvaluationResult` objects into immutable line-win multiplier results using Paytable lookup. |
+| `SpinResult` | Stores immutable pre-infection and post-infection Grid snapshots with the `WinResult` calculated from the final state. |
 | Terminal demo | Composes generation and infection and formats before/after snapshots outside the engine. |
 
 Empty placeholders currently exist for broader game, balance, and statistics responsibilities. Their presence is not an implementation of those systems.
@@ -32,6 +33,7 @@ Generated symbol weights
 → PaylineEvaluationResult[]
 → WinCalculator ← Paytable
 → WinResult
+→ SpinResult
 ```
 
 The selector owns probability mapping, the generator owns board construction, the Grid owns symbol state, infection performs the permitted transformation, and payline evaluation describes matches. Each boundary has a narrow responsibility.
@@ -46,22 +48,25 @@ The selector owns probability mapping, the generator owns board construction, th
 
 `WinCalculator` does not mutate evaluation results or the Paytable. It creates frozen `LineWin` objects in evaluation order, freezes the returned collection and `WinResult`, and asks the Paytable for each multiplier on every calculation.
 
+`SpinResult` preserves the immutable `GridSnapshot` values and `WinResult` supplied to it and freezes its own instance. It performs no generation, infection, evaluation, payout lookup, or orchestration.
+
 ## Planned full spin flow
 
 ```text
-Generated symbol weights
-→ WeightedSymbolSelector
-→ ReelGenerator
-→ Pre-infection Grid snapshot
-→ InfectionEngine
-→ Post-infection Grid snapshot
-→ PaylineEvaluator
-→ PaylineEvaluationResult[]
-→ WinCalculator ← Paytable
-→ SpinResult
+SpinEngine
+  → WeightedSymbolSelector / ReelGenerator
+  → Grid
+  → initial GridSnapshot before infection
+  → InfectionEngine
+  → final GridSnapshot after infection
+  → PaylineEvaluator
+  → PaylineEvaluationResult[]
+  → WinCalculator ← Paytable
+  → WinResult
+  → SpinResult(initialGrid, finalGrid, winResult)
 ```
 
-`SpinResult` and the orchestration around this implemented evaluation and win-calculation path are planned next. The snapshots will make the symbol transformation explicit in a future spin result.
+`SpinEngine` is planned next and will own this orchestration. It will call `Grid.snapshot()` before and after infection, evaluate wins from the final Grid state, and assemble the already-implemented `SpinResult`. `SpinResult` itself remains a passive domain object.
 
 ## Evaluation and payout separation
 
