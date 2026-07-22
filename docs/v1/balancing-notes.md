@@ -13,6 +13,8 @@ Spread's current math is provisional. No claim of balance, production readiness,
 | Paytable values | Implemented and used for normal line-win multipliers, but provisional; currency and bet-based payout calculation is not implemented |
 | Five active paylines | Current design direction |
 | Total-bet model | Current MVP design direction; not implemented |
+| Sampled RTP and hit rate | Implemented as aggregate simulation estimates |
+| Payout distribution and volatility | Planned; not implemented |
 
 The intended MVP bet model treats the selected stake as a total bet across all five active paylines rather than offering independently configurable line bets. Its accounting and payout semantics must be finalized with the paytable and are not current engine behavior.
 
@@ -32,6 +34,8 @@ Large-sample simulation should measure:
 - all-Wild payline frequency, even before a special award exists.
 
 Final weights and paytable values must be based on measured behavior rather than intuition alone. Confidence and sample size should be recorded alongside results, especially for rare events.
+
+The current simulator assumes one wager unit per spin and runs the full `SpinEngine` path. Its first results are baselines, not final balancing or regulatory-grade validation. Independent runs may differ. The maximum observed multiplier is a sample maximum rather than proof of the theoretical maximum.
 
 ## Maximum-win target
 

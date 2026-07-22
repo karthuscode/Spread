@@ -19,6 +19,9 @@ Spread is a strict TypeScript domain project using ES modules. Source code is or
 | `SpinResult` | Stores immutable pre-infection and post-infection Grid snapshots with the `WinResult` calculated from the final state. |
 | `SpinEngine` | Orchestrates one complete base-game spin through generation, snapshots, infection, final-state evaluation, win calculation, and result construction. |
 | Terminal demo | Instantiates `SpinEngine`, executes one spin, and formats the returned snapshots, infection summary, paylines, and multiplier outside the engine. |
+| `SimulationRunner` | Calls only `SpinEngine.spin()` repeatedly and incrementally aggregates return and hit statistics without retaining individual spin results. |
+| `SimulationResult` | Stores immutable aggregate counts, multiplier totals, estimated percentages, average winning-spin multiplier, and maximum observed multiplier. |
+| Simulation demo | Constructs the real engine, times one aggregate simulation, and formats the final report outside the simulation and engine layers. |
 
 Empty placeholders currently exist for broader game, balance, and statistics responsibilities. Their presence is not an implementation of those systems.
 
@@ -70,6 +73,18 @@ SpinEngine
 ```
 
 `SpinEngine` calls `Grid.snapshot()` immediately after generation and again after infection. It evaluates paylines only from the post-infection Grid returned by `InfectionEngine`, passes those exact results to `WinCalculator`, and assembles `SpinResult`. It performs no symbol selection, infection, matching, payout, betting, simulation, or presentation calculations of its own.
+
+## Simulation flow
+
+```text
+SimulationRunner
+  → SpinEngine.spin() repeated N times
+  → incremental aggregate counters
+  → SimulationResult
+  → simulation demo formatting and elapsed time
+```
+
+`SimulationRunner` has `SpinEngine` as its only gameplay dependency. It uses O(1) aggregate memory, does not retain a collection of `SpinResult` objects, and performs no logging or formatting. `SimulationResult` contains no timing data. Timing, thousands separators, percentage precision, and multiplier precision belong to the demo layer.
 
 ## Evaluation and payout separation
 

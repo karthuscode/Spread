@@ -98,8 +98,18 @@ The service contains no game-rule calculations and does not instantiate hidden d
 
 Grid labels, infection comparison, no-win messaging, and all terminal formatting remain in the demo layer. The engine contains no output or presentation logic. The earlier `npm run demo:grid` command remains available for the narrower generation-and-infection view.
 
+## Simulation and estimated RTP
+
+`SimulationRunner` synchronously executes `SpinEngine.spin()` for any positive finite integer spin count. For each spin it reads only `winResult.totalMultiplier` and incrementally updates total spins, winning and losing spins, total returned multiplier, and the maximum observed multiplier. It retains no array of individual spin results and uses O(1) aggregate memory.
+
+`SimulationResult` is an immutable passive object containing those counters plus estimated RTP percentage, hit-rate percentage, average winning-spin multiplier, and maximum observed win multiplier. One wager unit is assumed per spin. RTP is estimated as `(totalReturnedMultiplier / totalSpins) × 100`; hit rate is `(winningSpins / totalSpins) × 100`; average winning-spin multiplier is `totalReturnedMultiplier / winningSpins`, or `0` without wins.
+
+`npm run simulate` runs the real complete engine for 1,000,000 spins. A custom count can be supplied with `npm run simulate -- 100000`. Elapsed time and decimal formatting exist only in the demo layer.
+
+Simulation results are sample estimates and independent runs may differ. `maximumObservedWinMultiplier` is not a theoretical maximum. Current measurements provide a provisional baseline, not regulatory-grade validation or final balancing. Payout distribution, volatility, and automatic tuning are not implemented.
+
 ## Automated validation
 
-Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, Paytable lookup and validation, WinCalculator transformations, SpinResult construction, complete spin orchestration, and terminal formatting. Demo tests verify every required output section plus infection, no-infection, win, and no-win summaries without depending on randomness. Type checking is available through `npm run typecheck`.
+Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, Paytable lookup and validation, WinCalculator transformations, SpinResult construction, complete spin orchestration, terminal formatting, simulation aggregation and invariants, and simulation report formatting and CLI parsing. Type checking is available through `npm run typecheck`.
 
 For rules rather than implementation detail, see [Current game rules](current-game-rules.md). For missing systems, see the [Roadmap](roadmap.md).

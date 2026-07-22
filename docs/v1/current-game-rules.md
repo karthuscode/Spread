@@ -84,4 +84,15 @@ The generated-symbol weights listed in [Implemented features](implemented-featur
 
 The intended MVP uses all five paylines and a total-bet model rather than independently configurable line bets. This is a **current design direction**, not implemented betting behavior.
 
+## Simulation measurements
+
+- Simulation repeatedly executes the complete `SpinEngine` path and assumes one wager unit per spin.
+- Estimated RTP percentage is `(totalReturnedMultiplier / totalSpins) × 100`.
+- A winning spin has a `totalMultiplier` greater than zero.
+- Hit-rate percentage is `(winningSpins / totalSpins) × 100`.
+- Average winning-spin multiplier is `totalReturnedMultiplier / winningSpins`, or `0` when no spins win.
+- Maximum observed win is the largest sampled spin multiplier, not necessarily the theoretical maximum.
+- Only aggregate values are retained; individual `SpinResult` objects are not stored.
+- Results are sampled estimates. Independent runs may differ and the first result is only a baseline for later tuning.
+
 See [Balancing notes](balancing-notes.md) for targets and open math questions.
