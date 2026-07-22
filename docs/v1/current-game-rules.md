@@ -40,7 +40,15 @@ All five fixed paylines are intended to be active:
 - Paytable configuration is validated for complete paying-symbol and match-count coverage and positive finite integer multipliers.
 - Configuration is copied and protected from mutation when a Paytable is constructed.
 - Paytable lookup returns a configured multiplier only. It does not know about bets or balances and does not calculate total wins.
-- `WinCalculator`, which will combine evaluated matches with Paytable multipliers, is not yet implemented.
+
+## Win calculation
+
+- `WinCalculator` consumes ordered `PaylineEvaluationResult` objects and uses the Paytable as a passive dependency.
+- Each immutable `LineWin` contains `paylineId`, `symbolId`, `matchCount`, and `multiplier`.
+- `WinResult` contains the ordered immutable `lineWins` and `totalMultiplier`.
+- `totalMultiplier` is the sum of all normal line-win multipliers; no other calculation is performed.
+- Win calculation does not handle bets, currency, balances, RTP, Grid state, infection, bonuses, or special outcomes.
+- Current Paytable values remain provisional.
 
 ## Infection
 

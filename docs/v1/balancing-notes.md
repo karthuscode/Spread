@@ -10,7 +10,7 @@ Spread's current math is provisional. No claim of balance, production readiness,
 | Target RTP | **Open design decision:** TBD |
 | Target volatility | **Open design decision:** TBD |
 | Generated-symbol weights | Implemented but provisional |
-| Paytable values | Implemented and available through lookup, but provisional; win calculation is not implemented |
+| Paytable values | Implemented and used for normal line-win multipliers, but provisional; currency and bet-based payout calculation is not implemented |
 | Five active paylines | Current design direction |
 | Total-bet model | Current MVP design direction; not implemented |
 

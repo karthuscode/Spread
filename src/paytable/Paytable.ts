@@ -11,7 +11,7 @@ export type PayoutEntry = Readonly<Record<MatchCount, number>>;
 
 export type PaytableConfig = Readonly<Record<PayingSymbolId, PayoutEntry>>;
 
-const PAYING_SYMBOLS: readonly PayingSymbolId[] = Object.freeze([
+export const PAYING_SYMBOL_IDS: readonly PayingSymbolId[] = Object.freeze([
   SymbolId.MaskedSurgeon,
   SymbolId.Nurse,
   SymbolId.Human2,
@@ -21,8 +21,14 @@ const PAYING_SYMBOLS: readonly PayingSymbolId[] = Object.freeze([
   SymbolId.Equipment3,
 ]);
 
-const MATCH_COUNTS: readonly MatchCount[] = Object.freeze([3, 4, 5]);
-const MATCH_COUNT_KEYS: readonly string[] = Object.freeze(["3", "4", "5"]);
+export const SUPPORTED_MATCH_COUNTS: readonly MatchCount[] = Object.freeze([
+  3,
+  4,
+  5,
+]);
+const MATCH_COUNT_KEYS: readonly string[] = Object.freeze(
+  SUPPORTED_MATCH_COUNTS.map(String),
+);
 
 export class Paytable {
   private readonly payouts: PaytableConfig;
@@ -30,25 +36,25 @@ export class Paytable {
   constructor(config: PaytableConfig) {
     const suppliedSymbols = Object.keys(config);
 
-    for (const symbol of PAYING_SYMBOLS) {
+    for (const symbol of PAYING_SYMBOL_IDS) {
       if (!Object.hasOwn(config, symbol)) {
         throw new RangeError(`Missing payout configuration for ${symbol}.`);
       }
     }
 
     for (const symbol of suppliedSymbols) {
-      if (!(PAYING_SYMBOLS as readonly string[]).includes(symbol)) {
+      if (!(PAYING_SYMBOL_IDS as readonly string[]).includes(symbol)) {
         throw new RangeError(`Unsupported paytable symbol: ${symbol}.`);
       }
     }
 
     const payouts = {} as Record<PayingSymbolId, PayoutEntry>;
 
-    for (const symbol of PAYING_SYMBOLS) {
+    for (const symbol of PAYING_SYMBOL_IDS) {
       const entry = config[symbol] as PayoutEntry;
       const suppliedMatchCounts = Object.keys(entry);
 
-      for (const matchCount of MATCH_COUNTS) {
+      for (const matchCount of SUPPORTED_MATCH_COUNTS) {
         if (!Object.hasOwn(entry, matchCount)) {
           throw new RangeError(
             `Missing ${matchCount}-match multiplier for ${symbol}.`,
@@ -66,7 +72,7 @@ export class Paytable {
 
       const copiedEntry = {} as Record<MatchCount, number>;
 
-      for (const matchCount of MATCH_COUNTS) {
+      for (const matchCount of SUPPORTED_MATCH_COUNTS) {
         const multiplier: unknown = entry[matchCount];
 
         if (

@@ -4,16 +4,15 @@ The roadmap prioritizes a complete, measurable base-game loop before presentatio
 
 ## Immediate next milestone
 
-**Planned next:** implement `WinCalculator`. It should combine resolved paying symbols and match counts from `PaylineEvaluator` with provisional multipliers from the implemented Paytable, without adding bet or presentation concerns to either lookup or evaluation.
+**Planned next:** implement `SpinResult` around the completed evaluation and normal line-win multiplier results.
 
 ## Short-term engine milestones
 
-The Paytable data structure and lookup are complete. The remaining intended order is:
+Paytable lookup and `WinCalculator` are complete. The remaining intended order is:
 
-1. Implement `WinCalculator` and convert `PaylineEvaluator` results into payout multipliers.
-2. Implement `SpinResult`.
-3. Implement full spin orchestration.
-4. Extend the terminal demo to show complete spin results.
+1. Implement `SpinResult`.
+2. Implement full spin orchestration.
+3. Extend the terminal demo to show complete spin results.
 
 The planned full data flow is documented in [Architecture](architecture.md#planned-full-spin-flow).
 
@@ -21,14 +20,14 @@ The planned full data flow is documented in [Architecture](architecture.md#plann
 
 After the full spin path is deterministic and tested:
 
-5. Implement large-sample simulation.
-6. Measure RTP.
-7. Measure hit frequency.
-8. Measure average and median win.
-9. Measure payout distribution.
-10. Measure volatility.
-11. Measure maximum observed win.
-12. Tune symbol weights and paytable values.
+4. Implement large-sample simulation.
+5. Measure RTP.
+6. Measure hit frequency.
+7. Measure average and median win.
+8. Measure payout distribution.
+9. Measure volatility.
+10. Measure maximum observed win.
+11. Tune symbol weights and paytable values.
 
 Simulation results, rather than intuition alone, must drive final math. See [Balancing notes](balancing-notes.md).
 

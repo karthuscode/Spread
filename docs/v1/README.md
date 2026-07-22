@@ -6,11 +6,11 @@ The project favors mechanical coherence and polish over accumulating unrelated f
 
 ## Current status
 
-**Implemented:** symbol metadata, provisional weighted symbol selection, 5×3 Grid generation, one-step orthogonal infection, five fixed paylines, left-to-right payline match evaluation, type-safe Paytable lookup, a before/after terminal demo, and deterministic automated tests.
+**Implemented:** symbol metadata, provisional weighted symbol selection, 5×3 Grid generation, one-step orthogonal infection, five fixed paylines, left-to-right payline match evaluation, type-safe Paytable lookup, normal line-win multiplier calculation, a before/after terminal demo, and deterministic automated tests.
 
-**Planned next:** implement `WinCalculator` to combine evaluated matches with Paytable multipliers, define a complete spin result, orchestrate a spin, and build simulation tools.
+**Planned next:** define `SpinResult`, orchestrate a complete spin, and build simulation tools.
 
-**Not implemented:** payout calculation, betting and balance behavior, RTP or volatility simulation, complete spin orchestration, graphical presentation, bonus games, and special all-Wild outcomes.
+**Not implemented:** currency or bet-based payout calculation, betting and balance behavior, RTP or volatility simulation, complete spin orchestration, graphical presentation, bonus games, and special all-Wild outcomes.
 
 The engine is a work in progress. Its weights and implemented Paytable values are provisional and are not mathematically validated.
 

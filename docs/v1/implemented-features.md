@@ -70,7 +70,15 @@ Winning results contain a one-based payline identifier, resolved paying `SymbolI
 
 The configuration stores payout multipliers rather than currency values and has no knowledge of bets or balances. Construction requires every paying symbol and every supported match count, rejects unsupported entries, and requires each multiplier to be a positive finite integer. It copies and freezes the supplied entries so later input mutation cannot change lookup behavior and callers cannot mutate internal state.
 
-The default configuration contains the current provisional multipliers. These values are not mathematically balanced and must be tuned through simulation. Paytable lookup returns one configured multiplier; it does not calculate line wins or total wins. `WinCalculator` remains the next planned engine component.
+The default configuration contains the current provisional multipliers. These values are not mathematically balanced and must be tuned through simulation. Paytable lookup returns one configured multiplier and does not calculate line wins or total wins.
+
+## Win calculation
+
+`WinCalculator` consumes the ordered `PaylineEvaluationResult` objects returned by `PaylineEvaluator` and uses the Paytable as a passive dependency. It asks the Paytable for every line multiplier and returns an immutable `WinResult`.
+
+Each immutable `LineWin` contains the one-based `paylineId`, paying `symbolId`, supported `matchCount`, and configured `multiplier`. `WinResult` contains the ordered `lineWins` collection and `totalMultiplier`, which is only the sum of normal line-win multipliers.
+
+The calculator does not handle bets, currency, balances, RTP, Grid state, infection, bonuses, or special outcomes. `SpinResult` is the next planned engine component, followed by full spin orchestration.
 
 ## Terminal demo
 
@@ -78,6 +86,6 @@ The default configuration contains the current provisional multipliers. These va
 
 ## Automated validation
 
-Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, and Paytable lookup and validation. Paytable tests also cover its provisional values, Wild exclusion, supported match counts, invalid multipliers, immutable configuration, and isolation from constructor-input mutation. Type checking verifies that public lookup accepts only paying symbols and match counts 3, 4, or 5. Type checking is available through `npm run typecheck`.
+Deterministic tests cover the Grid, symbol metadata, paylines, weighted selection boundaries and validation, generation, infection, payline evaluation, Paytable lookup and validation, and WinCalculator transformations. WinCalculator coverage includes empty, single, and multiple-line results; ordering; summation; repeated symbols; all supported match counts; Paytable calls; determinism; validation; input preservation; and immutable output. Type checking is available through `npm run typecheck`.
 
 For rules rather than implementation detail, see [Current game rules](current-game-rules.md). For missing systems, see the [Roadmap](roadmap.md).
