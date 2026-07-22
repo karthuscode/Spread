@@ -7,7 +7,7 @@ A TypeScript slot-game engine built as a long-term portfolio project.
 - ✅ Engine foundation
 - ✅ Infection mechanic
 - ✅ Payline evaluation
-- 🚧 Win calculation
+- ✅ Win calculation
 - 🚧 Simulation
 
 ## Documentation
