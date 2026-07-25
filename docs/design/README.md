@@ -74,6 +74,14 @@ Every symbol should eventually receive its own Image Specification derived from 
 
 The shared [AI Generation Guide](ai-generation-guide.md) establishes priority, fidelity, consistency, invention limits, and concept-art expectations. It does not define any individual symbol. It accompanies every symbol-specific Image Specification and should remain stable across a generation batch.
 
+## V1 Production Resources
+
+The [Image Generation Standard](image-generation-standard.md) formalizes the complete production workflow, document hierarchy, Asset Types, Asset Goals, canvas rules, review, and prototype-integration requirements.
+
+The [Asset Generation Workflow](asset-generation-workflow.md) defines the mandatory three-document input hierarchy, Asset Goal, production procedure, slot-icon standard, and asset lifecycle for V1.
+
+The [Asset Storage Guide](asset-storage-guide.md) defines source, runtime, and preview storage; naming conventions; and recommended export formats.
+
 ## Concept Art and Rotation
 
 Generated concept art is exploratory material, not an automatic production asset or design decision. Design Critique compares the result against the Image Specification, Character Bible, Visual DNA, and Visual Direction. Rejected deviations do not silently redefine the character.
