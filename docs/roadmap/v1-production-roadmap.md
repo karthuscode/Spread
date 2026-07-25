@@ -11,7 +11,7 @@ V1 must prove that the complete visual symbol set, essential game presentation, 
 The prototype includes:
 
 - a complete symbol set;
-- one finalized slot icon for every symbol;
+- one production-ready prototype slot icon for every symbol;
 - a background;
 - a reel frame;
 - basic UI;
@@ -21,7 +21,7 @@ The prototype includes:
 - win calculation; and
 - win highlighting.
 
-One finalized icon per symbol means one approved, production-ready static icon that is readable at gameplay size and consistent with the established Visual DNA. V1 does not require alternate poses or animation frames.
+One production-ready prototype icon per symbol means one usable static icon that is readable at gameplay size and consistent with the established Visual DNA. These icons enable prototype integration; they are not final artwork, are not permanently locked, and may receive future visual revisions. V1 does not require alternate poses or animation frames.
 
 ## Intentional Exclusions
 
@@ -62,34 +62,47 @@ An asset is not complete merely because an image has been generated. It must be 
 
 ## Symbol Production Checklist
 
-Status notation: an unchecked item marked **In progress** is active production work. All other unchecked items have not yet reached completion.
+Every V1 symbol has a usable slot icon and has entered prototype production:
 
-- [ ] Masked Surgeon — **In progress**
-- [ ] Nurse — **In progress**
-- [ ] Human 2
-- [ ] Human 3
-- [ ] Medical Equipment 1
-- [ ] Medical Equipment 2
-- [ ] Medical Equipment 3
-- [ ] Virus Wild
-- [ ] Infected Wild
+- [x] Masked Surgeon — **Prototype Complete**
+- [x] Nurse — **Prototype Complete**
+- [x] Human 2 — **Prototype Complete**
+- [x] Human 3 — **Prototype Complete**
+- [x] Medical Equipment 1 — **Prototype Complete**
+- [x] Medical Equipment 2 — **Prototype Complete**
+- [x] Medical Equipment 3 — **Prototype Complete**
+- [x] Virus Wild — **Prototype Complete**
+- [x] Infected Wild — **Prototype Complete**
 
-The three medical-equipment names remain provisional. Their final visual identities must be approved before their slot icons can be considered complete.
+**Prototype Complete** does not mean Final. It confirms that a usable icon exists and can be integrated into the first complete playable graphical prototype. Visual review, replacement, and refinement remain permitted.
 
-## UI Production Checklist
+## Active Phase: Environment & UI Production
 
-- [ ] Background
+Symbol Production is no longer the active production focus. Environment Production is active, followed by the UI elements required to assemble the complete prototype screen.
+
+The production priority is:
+
+1. [ ] Main Background — **Active**
+2. [ ] Reel Frame
+3. [ ] HUD Panels
+4. [ ] Spin Button
+5. [ ] Logo
+6. [ ] Remaining UI elements
+
+## Environment & UI Production Checklist
+
+- [ ] Main Background — **Active**
 - [ ] Reel Frame
+- [ ] HUD Panels
 - [ ] Spin Button
-- [ ] Basic HUD
 - [ ] Logo
-- [ ] Panels
+- [ ] Remaining UI elements
 
 The UI only needs the clarity and functionality required for the prototype. Advanced styling, animation, transitions, and cinematic treatment remain outside V1.
 
 ## Gameplay Integration Checklist
 
-- [ ] All finalized symbol icons appear correctly on the reels
+- [ ] All prototype-complete symbol icons appear correctly on the reels
 - [ ] Spin control completes a full playable spin
 - [ ] Basic HUD communicates the information required to play
 - [ ] Infection mechanic is represented correctly in the graphical build
@@ -102,8 +115,8 @@ The UI only needs the clarity and functionality required for the prototype. Adva
 
 V1 is officially complete when:
 
-1. every item in the Symbol Production Checklist is complete, with one finalized static slot icon integrated for every symbol;
-2. every item in the UI Production Checklist is complete at basic prototype quality;
+1. every item in the Symbol Production Checklist is Prototype Complete, with one production-ready static slot icon integrated for every symbol;
+2. every item in the Environment & UI Production Checklist is complete at basic prototype quality;
 3. the graphical build supports a complete playable spin from player input through final result;
 4. the infection mechanic, paylines, and win calculation work in the graphical build;
 5. wins are clearly highlighted and the resulting game state is readable; and
