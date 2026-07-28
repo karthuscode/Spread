@@ -5,9 +5,9 @@
 - **Asset type:** UI / Reel Frame
 - **Asset name:** Reel Frame
 - **Production phase:** UI Production
-- **Production status:** Active V1 specification
+- **Production status:** Prototype Complete; revision remains permitted
 - **Priority:** Highest-priority UI asset
-- **Shared language:** Inherits [UI Visual Language](ui-visual-language.md)
+- **Shared language:** Inherits [UI Visual Language](ui-visual-language.md) and [Reel Grid Specification](../layout/reel-grid-spec.md)
 
 ## Identity
 

@@ -6,6 +6,12 @@ V1 is the first playable graphical prototype of *Spread*. Its goal is completene
 
 V1 must prove that the complete visual symbol set, essential game presentation, and existing gameplay systems work together in one playable build. Temporary simplicity is acceptable where it does not prevent the player from reading the game state or completing the core play loop.
 
+**Current production phase:** UI Production
+
+**Next milestone:** First Playable Graphical Prototype
+
+All current artwork is **Prototype Complete** only: usable for integration and production validation, but open to later revision.
+
 ## V1 Scope
 
 The prototype includes:
@@ -76,56 +82,60 @@ Every V1 symbol has a usable slot icon and has entered prototype production:
 
 **Prototype Complete** does not mean Final. It confirms that a usable icon exists and can be integrated into the first complete playable graphical prototype. Visual review, replacement, and refinement remain permitted.
 
+## Graphical Foundation Status
+
+- [x] Symbol Production — **Prototype Complete**
+- [x] Environment Production — **Prototype Complete**
+- [x] Reel Grid Specification — **Prototype Complete**
+- [x] Reel Frame — **Prototype Complete**
+- [x] First Graphical Prototype Foundation — **Prototype Complete**
+
+The graphical foundation confirms that the background, frame, symbols, and locked 5×3 layout can be reviewed together in a static composition. It does not yet provide graphical interaction or a playable screen.
+
 ## Active Phase: UI Production
 
-Symbol Production is complete for the V1 prototype. The Main Background specification is complete, and UI Production is now active. The Reel Frame is the current asset.
+The minimum remaining interface is documented in:
 
-The production priority is:
+- [HUD Panels Specification](../design/ui/hud-panels.image-spec.md) — **Specification Ready**
+- [Spin Button Specification](../design/ui/spin-button.image-spec.md) — **Specification Ready**
+- [Prototype Logo Specification](../design/ui/logo.image-spec.md) — **Specification Ready**
 
-1. [x] Main Background — **Specification Complete**
-2. [ ] Reel Frame — **Active**
-3. [ ] HUD Panels
-4. [ ] Spin Button
-5. [ ] Logo
-6. [ ] Remaining UI elements
+UI work is limited to the assets and states required for a readable first playable graphical prototype. Advanced styling, animation polish, transitions, audio, and cinematic treatment remain outside V1.
 
-## Environment & UI Production Checklist
+### Next Production Steps
 
-- [x] Main Background — **Specification Complete**
-- [ ] Reel Frame — **Active**
-- [ ] HUD Panels
-- [ ] Spin Button
-- [ ] Logo
-- [ ] Remaining UI elements
+1. [ ] Generate remaining prototype UI assets
+2. [ ] Assemble a complete static full-screen prototype mockup
+3. [ ] Review layout and readability
+4. [ ] Integrate the visual assets into the TypeScript project
+5. [ ] Implement the first functional graphical spin
+6. [ ] Add basic gameplay feedback
+7. [ ] Validate the First Playable Graphical Prototype
 
-The UI only needs the clarity and functionality required for the prototype. Advanced styling, animation, transitions, and cinematic treatment remain outside V1.
-
-**Current production phase:** UI Production
-
-**Current asset:** Reel Frame
-
-**Next recommended asset:** HUD Panels
+The detailed production gate is maintained in the [First Playable Graphical Prototype Checklist](first-playable-prototype-checklist.md).
 
 ## Gameplay Integration Checklist
 
-- [ ] All prototype-complete symbol icons appear correctly on the reels
-- [ ] Spin control completes a full playable spin
-- [ ] Basic HUD communicates the information required to play
-- [ ] Infection mechanic is represented correctly in the graphical build
-- [ ] Paylines are integrated and readable
-- [ ] Wins are calculated correctly
-- [ ] Winning symbols or paylines are clearly highlighted
-- [ ] Background, reel frame, logo, and panels assemble into one coherent playable screen
+- [ ] Background and Reel Frame render around the locked reel opening
+- [ ] All Prototype Complete symbol icons load and render in the 5×3 grid
+- [ ] Spin control completes one full graphical spin
+- [ ] Balance, Bet, and Win communicate the information required to play
+- [ ] Basic Bet adjustment rejects invalid values
+- [ ] Infection transformation is represented correctly in the graphical build
+- [ ] Winning lines or symbols receive a basic readable highlight
+- [ ] Displayed results and values match the existing gameplay domain
+- [ ] Basic error and disabled states prevent invalid interaction
+- [ ] Background, Reel Frame, logo, panels, controls, and symbols assemble into one coherent playable screen
 
-## V1 Completion Definition
+## First Playable Prototype Validation
 
-V1 is officially complete when:
+The next milestone is validated when:
 
-1. every item in the Symbol Production Checklist is Prototype Complete, with one production-ready static slot icon integrated for every symbol;
-2. every item in the Environment & UI Production Checklist is complete at basic prototype quality;
-3. the graphical build supports a complete playable spin from player input through final result;
-4. the infection mechanic, paylines, and win calculation work in the graphical build;
-5. wins are clearly highlighted and the resulting game state is readable; and
-6. the complete prototype has been reviewed as an integrated build with no blocking visual or gameplay-integration defects.
+1. every required prototype asset has a stable runtime export;
+2. the graphical build supports a complete spin from player input through final result;
+3. Balance, Bet, Win, infection, and winning results are correctly represented;
+4. essential controls provide usable default, disabled, and error states;
+5. the screen follows the Reel Grid Specification and remains readable; and
+6. the integrated build has no blocking visual or interaction defects.
 
-V1 completion does not depend on animation, sprite sheets, VFX, particles, sound, cinematic presentation, or advanced UI polish.
+Passing this gate establishes the first playable graphical prototype. It does not make the game or its artwork final. Animation polish, sprite sheets, VFX, particles, sound, music, cinematic presentation, final responsive polish, and final branding remain deferred.
