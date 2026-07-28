@@ -76,14 +76,14 @@ Every V1 symbol has a usable slot icon and has entered prototype production:
 
 **Prototype Complete** does not mean Final. It confirms that a usable icon exists and can be integrated into the first complete playable graphical prototype. Visual review, replacement, and refinement remain permitted.
 
-## Active Phase: Environment & UI Production
+## Active Phase: UI Production
 
-Symbol Production is no longer the active production focus. Environment Production is active, followed by the UI elements required to assemble the complete prototype screen.
+Symbol Production is complete for the V1 prototype. The Main Background specification is complete, and UI Production is now active. The Reel Frame is the current asset.
 
 The production priority is:
 
-1. [ ] Main Background — **Active**
-2. [ ] Reel Frame
+1. [x] Main Background — **Specification Complete**
+2. [ ] Reel Frame — **Active**
 3. [ ] HUD Panels
 4. [ ] Spin Button
 5. [ ] Logo
@@ -91,14 +91,20 @@ The production priority is:
 
 ## Environment & UI Production Checklist
 
-- [ ] Main Background — **Active**
-- [ ] Reel Frame
+- [x] Main Background — **Specification Complete**
+- [ ] Reel Frame — **Active**
 - [ ] HUD Panels
 - [ ] Spin Button
 - [ ] Logo
 - [ ] Remaining UI elements
 
 The UI only needs the clarity and functionality required for the prototype. Advanced styling, animation, transitions, and cinematic treatment remain outside V1.
+
+**Current production phase:** UI Production
+
+**Current asset:** Reel Frame
+
+**Next recommended asset:** HUD Panels
 
 ## Gameplay Integration Checklist
 
